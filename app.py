@@ -160,7 +160,8 @@ with gr.Blocks(title="FaceVision - Face Detection & Recognition") as demo:
     submit_btn.click(
         fn=recognize_faces,
         inputs=[input_img, threshold_slider],
-        outputs=[output_img, output_text]
+        outputs=[output_img, output_text],
+        api_name=False
     )
 
     # Example images if present in repository
@@ -179,8 +180,9 @@ with gr.Blocks(title="FaceVision - Face Detection & Recognition") as demo:
             outputs=[output_img, output_text],
             fn=recognize_faces,
             cache_examples=False,
-            label="Sample Test Images"
+            label="Sample Test Images",
+            api_name=False
         )
 
 if __name__ == "__main__":
-    demo.launch(show_api=False)
+    demo.launch(ssr_mode=False)
