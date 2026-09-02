@@ -183,4 +183,4 @@ with gr.Blocks(title="FaceVision - Face Detection & Recognition") as demo:
         )
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(show_api=False)
