@@ -1,8 +1,18 @@
+---
+title: FaceVision
+emoji: 👤
+colorFrom: blue
+colorTo: indigo
+sdk: gradio
+app_file: app.py
+pinned: false
+---
+
 # FaceVision
 
-[![Live Demo](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-yellow.svg)](https://huggingface.co/spaces/YOUR_USERNAME/FaceVision)
+[![Live Demo](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-yellow.svg)](https://huggingface.co/spaces/yashitagaur/FaceVision)
 
-> 🚀 **Live Demo:** Try out the interactive web demo on [Hugging Face Spaces](https://huggingface.co/spaces/YOUR_USERNAME/FaceVision) *(Replace `YOUR_USERNAME` with your Hugging Face username)*.
+> 🚀 **Live Demo:** Try out the interactive web demo on [Hugging Face Spaces](https://huggingface.co/spaces/yashitagaur/FaceVision).
 
 A real-time face detection and recognition system built using **OpenCV**, **YuNet**, **SFace**, and **Gradio**.
 
