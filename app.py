@@ -5,6 +5,13 @@ import os
 from detector import FaceDetector
 from recognizer import FaceRecognizer
 
+try:
+    import spaces
+    gpu_decorator = spaces.GPU
+except (ImportError, Exception):
+    def gpu_decorator(func):
+        return func
+
 # -----------------------------
 # Load Models
 # -----------------------------
@@ -15,6 +22,7 @@ detector = FaceDetector(MODEL_DETECTOR_PATH)
 recognizer = FaceRecognizer(MODEL_RECOGNIZER_PATH)
 
 
+@gpu_decorator
 def recognize_faces(image, threshold=0.65):
     """
     Process input image (RGB numpy array from Gradio):
