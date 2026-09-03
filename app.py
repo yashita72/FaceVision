@@ -14,15 +14,8 @@ from detector import FaceDetector
 from recognizer import FaceRecognizer
 from deepface import DeepFace
 
-try:
-    import spaces
-    gpu_decorator = spaces.GPU
-except (ImportError, Exception):
-    def gpu_decorator(func):
-        return func
-
 # -----------------------------
-# Load Models
+# Load Models & Warmup
 # -----------------------------
 MODEL_DETECTOR_PATH = os.path.join("models", "face_detection_yunet_2023mar.onnx")
 MODEL_RECOGNIZER_PATH = os.path.join("models", "face_recognition_sface_2021dec.onnx")
@@ -30,8 +23,15 @@ MODEL_RECOGNIZER_PATH = os.path.join("models", "face_recognition_sface_2021dec.o
 detector = FaceDetector(MODEL_DETECTOR_PATH)
 recognizer = FaceRecognizer(MODEL_RECOGNIZER_PATH)
 
+# Warm up DeepFace models on CPU during startup to avoid first-inference latency
+try:
+    DeepFace.build_model("Emotion")
+    DeepFace.build_model("Age")
+    DeepFace.build_model("Gender")
+except Exception:
+    pass
 
-@gpu_decorator
+
 def recognize_faces(image, threshold=0.65):
     """
     Process input image (RGB numpy array from Gradio):
@@ -135,7 +135,6 @@ def recognize_faces(image, threshold=0.65):
     return annotated_rgb, text_summary
 
 
-@gpu_decorator
 def analyze_attributes(image):
     """
     Process input image for Emotion, Age & Gender:
