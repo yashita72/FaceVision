@@ -1,4 +1,11 @@
+import os
 import sys
+
+# Force CPU execution to prevent ZeroGPU CUDA shim crashes with TensorFlow & OpenCV
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+
 if sys.platform == "win32":
     try:
         sys.stdout.reconfigure(encoding="utf-8")
@@ -9,7 +16,6 @@ if sys.platform == "win32":
 import cv2
 import gradio as gr
 import numpy as np
-import os
 from detector import FaceDetector
 from recognizer import FaceRecognizer
 from deepface import DeepFace
