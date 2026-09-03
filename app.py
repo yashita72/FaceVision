@@ -168,10 +168,13 @@ with gr.Blocks(title="FaceVision - Face Detection & Recognition") as demo:
     examples = []
     ex1 = os.path.join("images", "samridhi", "img1.jpeg")
     ex2 = os.path.join("images", "samridhi", "WhatsApp Image 2026-06-30 at 11.48.05 AM.jpeg")
+    ex3 = os.path.join("images", "yashita", "WhatsApp Image 2026-06-30 at 11.48.04 AM.jpeg")
     if os.path.exists(ex1):
         examples.append([ex1, 0.65])
     if os.path.exists(ex2):
         examples.append([ex2, 0.65])
+    if os.path.exists(ex3):
+        examples.append([ex3, 0.65])
 
     if examples:
         gr.Examples(

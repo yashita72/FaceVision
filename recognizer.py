@@ -1,3 +1,4 @@
+import os
 import cv2
 import numpy as np
 import pickle
@@ -5,15 +6,18 @@ import pickle
 
 class FaceRecognizer:
 
-    def __init__(self, model_path):
+    def __init__(self, model_path, db_path="embeddings/embeddings.pkl"):
 
         self.recognizer = cv2.FaceRecognizerSF.create(
             model_path,
             ""
         )
-
-        with open("embeddings/embeddings.pkl", "rb") as f:
-            self.database = pickle.load(f)
+        self.db_path = db_path
+        if os.path.exists(db_path):
+            with open(db_path, "rb") as f:
+                self.database = pickle.load(f)
+        else:
+            self.database = {}
 
     def align_face(self, image, face):
 

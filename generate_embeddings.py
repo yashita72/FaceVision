@@ -37,7 +37,7 @@ for person in os.listdir(dataset_path):
         image = cv2.imread(image_path)
 
         if image is None:
-            print(f"❌ Could not read {image_name}")
+            print(f"[!] Could not read {image_name}")
             continue
 
         # Resize very large images
@@ -55,7 +55,7 @@ for person in os.listdir(dataset_path):
         faces = detector.detect(image)
 
         if faces is None or len(faces) == 0:
-            print(f"❌ No face detected : {image_name}")
+            print(f"[-] No face detected : {image_name}")
             continue
 
         # Pick highest confidence face
@@ -63,7 +63,7 @@ for person in os.listdir(dataset_path):
 
         confidence = best_face[-1]
 
-        print(f"✔ {image_name}  | Confidence = {confidence:.3f}")
+        print(f"[+] {image_name}  | Confidence = {confidence:.3f}")
 
         try:
 
